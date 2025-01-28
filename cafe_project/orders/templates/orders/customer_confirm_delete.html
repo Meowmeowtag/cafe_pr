@@ -1,0 +1,26 @@
+{% extends 'orders/base.html' %}
+
+{% block title %}Удаление заказа{% endblock %}
+
+{% block content %}
+    <div class="delete-container">
+        <div class="delete-box">
+            <h1>Удаление заказа</h1>
+            <p class="delete-warning">
+                Вы уверены, что хотите удалить заказ #{{ order.id }}?
+            </p>
+            <div class="delete-details">
+                <p><strong>Клиент:</strong> {{ order.customer.name }}</p>
+                <p><strong>Статус:</strong> {{ order.status }}</p>
+                <p><strong>Сумма:</strong> {{ order.total_price }} руб.</p>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="delete-buttons">
+                    <button type="submit" class="delete-button">Да, удалить</button>
+                    <a href="{% url 'order_list' %}" class="cancel-button">Отмена</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %} 

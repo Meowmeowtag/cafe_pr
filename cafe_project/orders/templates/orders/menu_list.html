@@ -1,0 +1,21 @@
+{% extends 'orders/base.html' %}
+
+{% block title %}Меню{% endblock %}
+
+{% block content %}
+    <h1>Список блюд</h1>
+    <a href="{% url 'menu_add' %}" class="add-button">Добавить новое блюдо</a>
+    
+    <ul>
+    {% for item in items %}
+        <li>
+            {{ item.name }} | 
+            {{ item.price }} руб. | 
+            {{ item.category }} |
+            {% if item.available %}Доступно{% else %}Не доступно{% endif %}
+            <a href="{% url 'menu_edit' item.pk %}">Редактировать</a> |
+            <a href="{% url 'menu_delete' item.pk %}">Удалить</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

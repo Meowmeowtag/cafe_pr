@@ -1,0 +1,20 @@
+{% extends 'orders/base.html' %}
+
+{% block title %}Клиенты{% endblock %}
+
+{% block content %}
+    <h1>Список клиентов</h1>
+    <a href="{% url 'customer_add' %}" class="add-button">Добавить нового клиента</a>
+    
+    <ul>
+    {% for customer in customers %}
+        <li>
+            {{ customer.name }} | 
+            {{ customer.email }} | 
+            {{ customer.phone_number }}
+            <a href="{% url 'customer_edit' customer.pk %}">Редактировать</a> |
+            <a href="{% url 'customer_delete' customer.pk %}">Удалить</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
